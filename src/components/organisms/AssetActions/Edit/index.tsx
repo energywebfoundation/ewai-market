@@ -1,6 +1,6 @@
 import { useOcean } from '@oceanprotocol/react'
 import { Formik } from 'formik'
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { MetadataPublishForm } from '../../../../@types/MetaData'
 import {
   validationSchema,
@@ -16,6 +16,14 @@ import styles from './index.module.css'
 import { Logger } from '@oceanprotocol/lib'
 import MetadataFeedback from '../../../molecules/MetadataFeedback'
 import { graphql, useStaticQuery } from 'gatsby'
+import * as EwaiUtils from '../../../../ewai/ewaiutils'
+import {
+  EwaiClient,
+  IEwaiAssetFormFields,
+  IEwaiAssetMetadata,
+  useEwaiInstance
+} from '../../../../ewai/client/ewai-js'
+import { navigate } from 'gatsby'
 
 const contentQuery = graphql`
   query EditMetadataQuery {
@@ -52,33 +60,121 @@ export default function Edit({
   setShowEdit: (show: boolean) => void
 }): ReactElement {
   const data = useStaticQuery(contentQuery)
+  const ewaiInstance = useEwaiInstance()
   const content = data.content.edges[0].node.childPagesJson
 
   const { debug } = useUserPreferences()
   const { ocean, account } = useOcean()
-  const { did, metadata, ddo, refreshDdo } = useAsset()
+  const { did, metadata, ewaiAsset, ddo, refreshDdo } = useAsset()
   const [success, setSuccess] = useState<string>()
   const [error, setError] = useState<string>()
 
   const hasFeedback = error || success
+
+  // Only allow this page if the user has the proper EWAI marketplace data publisher role set
+  useEffect(() => {
+    if (ewaiInstance.enforceMarketplacePublishRole && account) {
+      const checkRoles = async () => {
+        const ewaiClient = new EwaiClient({
+          username: process.env.EWAI_API_USERNAME,
+          password: process.env.EWAI_API_PASSWORD,
+          graphQlUrl: process.env.EWAI_API_GRAPHQL_URL
+        })
+        const canPubResult = await ewaiClient.ewaiCanPublishAssetsOnMarketplaceAsync(
+          account.getId()
+        )
+        if (!canPubResult.canPublish) {
+          navigate('/enrol')
+        }
+      }
+      checkRoles()
+    }
+  }, [account])
 
   async function handleSubmit(
     values: Partial<MetadataPublishForm>,
     resetForm: () => void
   ) {
     try {
-      const ddo = await ocean.assets.editMetadata(
-        did,
-        { title: values.name, description: values.description },
-        account
+      // ---------------------------------------------
+      // Validate EWAI
+      // ---------------------------------------------
+
+      // get ewai specific form fields:
+      const ewaiAssetFormInfo: IEwaiAssetFormFields = EwaiUtils.transformEditFormToEwaiAssetInfo(
+        values
       )
 
-      // Edit failed
-      if (!ddo) {
-        setError(content.form.error)
-        Logger.error(content.form.error)
-        return
+      // check to see if any schema that was entered (if any) is valid JSON Schema:
+      if (ewaiAssetFormInfo.ewaiMsgSchema) {
+        let msgSchemaValidatedOk = false
+        if (EwaiUtils.hasJsonStructure(ewaiAssetFormInfo.ewaiMsgSchema)) {
+          const check = EwaiUtils.safeJsonParse(ewaiAssetFormInfo.ewaiMsgSchema)
+          msgSchemaValidatedOk =
+            check.error === null || check.error === undefined
+        }
+        if (!msgSchemaValidatedOk) {
+          const errMsg =
+            'Please enter valid JSON Schema in the EWAI Message Schema field (or you must leave it blank)'
+          setError(errMsg)
+          Logger.error(errMsg)
+          return
+        }
       }
+
+      // ---------------------------------------------
+      // End Validate EWAI
+      // ---------------------------------------------
+
+      // update Ocean DDO on-chain:
+
+      // ewai added logic: only update on-chain if ocean data changed:
+      const initialValues = getInitialValues(metadata, ewaiAsset)
+
+      if (
+        initialValues.name !== values.name ||
+        initialValues.description !== values.description
+      ) {
+        const ddo = await ocean.assets.editMetadata(
+          did,
+          { title: values.name, description: values.description },
+          account
+        )
+        // Edit failed
+        if (!ddo) {
+          setError(content.form.error)
+          Logger.error(content.form.error)
+          return
+        }
+      }
+
+      // ---------------------------------------------
+      // Update EWAI
+      // ---------------------------------------------
+
+      // create an EWAI Client instance:
+      const ewaiClient = new EwaiClient({
+        username: process.env.EWAI_API_USERNAME,
+        password: process.env.EWAI_API_PASSWORD,
+        graphQlUrl: process.env.EWAI_API_GRAPHQL_URL
+      })
+
+      const ewaiAssetMetadata: any = {
+        title: values.name,
+        description: values.description,
+        category: ewaiAssetFormInfo.ewaiCategory,
+        vendor: ewaiAssetFormInfo.ewaiVendor,
+        tags: ewaiAsset.metadata.tags
+      }
+      const updateEwaiAsset = await ewaiClient.updateEwaiAssetAsync(
+        ewaiAsset.externalDid,
+        ewaiAssetFormInfo,
+        ewaiAssetMetadata
+      )
+
+      // --------------------------------------------
+      // End Update EWAI
+      // --------------------------------------------
 
       // Edit succeeded
       setSuccess(content.form.success)
@@ -91,7 +187,7 @@ export default function Edit({
 
   return (
     <Formik
-      initialValues={getInitialValues(metadata)}
+      initialValues={getInitialValues(metadata, ewaiAsset)}
       validationSchema={validationSchema}
       onSubmit={async (values, { resetForm }) => {
         // move user's focus to top of screen

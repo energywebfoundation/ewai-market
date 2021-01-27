@@ -10,30 +10,12 @@ import Button from '../atoms/Button'
 import Bookmarks from '../molecules/Bookmarks'
 import axios from 'axios'
 import { queryMetadata } from '../../utils/aquarius'
-
-const queryHighest = {
-  page: 1,
-  offset: 9,
-  query: {
-    nativeSearch: 1,
-    query_string: {
-      query: `(price.type:pool) -isInPurgatory:true`
-    }
-  },
-  sort: { 'price.ocean': -1 }
-}
-
-const queryLatest = {
-  page: 1,
-  offset: 9,
-  query: {
-    nativeSearch: 1,
-    query_string: {
-      query: `-isInPurgatory:true`
-    }
-  },
-  sort: { created: -1 }
-}
+import { useStaticQuery, graphql } from 'gatsby'
+import { DDO } from '@oceanprotocol/lib'
+import { ewaiCheckResultsForSpamAsync } from '../../ewai/ewaifilter'
+import { useEwaiInstance } from '../../ewai/client/ewai-js'
+import { useSiteMetadata } from '../../hooks/useSiteMetadata'
+import Alert from '../atoms/Alert'
 
 function LoaderArea() {
   return (
@@ -68,7 +50,18 @@ function SectionQueryResult({
         config.metadataCacheUri,
         source.token
       )
-      setResult(result)
+      let filteredResultsSet = false
+      if (
+        process.env.EWAI_CHECK_FOR_SPAM_ASSETS?.toLowerCase() === 'true' &&
+        result?.results?.length > 0
+      ) {
+        const filteredResults = await ewaiCheckResultsForSpamAsync(result)
+        setResult(filteredResults)
+        filteredResultsSet = true
+      }
+      if (!filteredResultsSet) {
+        setResult(result)
+      }
       setLoading(false)
     }
     init()
@@ -92,8 +85,37 @@ function SectionQueryResult({
 }
 
 export default function HomePage(): ReactElement {
+  const ewaiInstance = useEwaiInstance()
+
+  const queryHighest = {
+    page: 1,
+    offset: 9,
+    query: {
+      nativeSearch: 1,
+      query_string: {
+        query: `(service.attributes.additionalInformation.energyweb.ewai.instance:"${ewaiInstance.name}") && (price.type:pool) -isInPurgatory:true`
+      }
+    },
+    sort: { 'price.ocean': -1 }
+  }
+
+  const queryLatest = {
+    page: 1,
+    offset: 9,
+    query: {
+      nativeSearch: 1,
+      query_string: {
+        query: `(service.attributes.additionalInformation.energyweb.ewai.instance:"${ewaiInstance.name}") -isInPurgatory:true`
+      }
+    },
+    sort: { created: -1 }
+  }
+
+  const { warning } = useSiteMetadata()
+
   return (
     <>
+      <Alert text={warning} state="info" />
       <Container narrow className={styles.searchWrap}>
         <SearchBar size="large" />
       </Container>
@@ -103,10 +125,12 @@ export default function HomePage(): ReactElement {
         <Bookmarks />
       </section>
 
-      <SectionQueryResult
-        title="Highest Liquidity Pools"
-        query={queryHighest}
-      />
+      {process.env.SHOW_LIQUIDITY_POOLS === 'true' && (
+        <SectionQueryResult
+          title="Highest Liquidity Pools"
+          query={queryHighest}
+        />
+      )}
 
       <SectionQueryResult
         title="New Data Sets"

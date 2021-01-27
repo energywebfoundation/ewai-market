@@ -7,6 +7,9 @@ import queryString from 'query-string'
 import { getResults } from './utils'
 import Loader from '../../atoms/Loader'
 import { useOcean } from '@oceanprotocol/react'
+import { useStaticQuery, graphql } from 'gatsby'
+import { useEwaiInstance } from '../../../ewai/client/ewai-js'
+import { ewaiCheckResultsForSpamAsync } from '../../../ewai/ewaifilter'
 
 export default function SearchPage({
   location,
@@ -20,6 +23,7 @@ export default function SearchPage({
   const { text, owner, tags, page } = parsed
   const [queryResult, setQueryResult] = useState<QueryResult>()
   const [loading, setLoading] = useState<boolean>()
+  const ewaiInstance = useEwaiInstance()
 
   useEffect(() => {
     if (!config?.metadataCacheUri) return
@@ -27,9 +31,26 @@ export default function SearchPage({
     async function initSearch() {
       setLoading(true)
       setTotalResults(undefined)
-      const queryResult = await getResults(parsed, config.metadataCacheUri)
-      setQueryResult(queryResult)
-      setTotalResults(queryResult.totalResults)
+      const queryResult = await getResults(
+        ewaiInstance.name,
+        parsed,
+        config.metadataCacheUri
+      )
+      let filteredResultsSet = false
+      if (
+        process.env.EWAI_CHECK_FOR_SPAM_ASSETS?.toLowerCase() === 'true' &&
+        queryResult?.results.length > 0
+      ) {
+        const filteredResults = await ewaiCheckResultsForSpamAsync(queryResult)
+        setQueryResult(filteredResults)
+        setTotalResults(filteredResults.results.length)
+        filteredResultsSet = true
+      }
+      if (!filteredResultsSet) {
+        setQueryResult(queryResult)
+        setTotalResults(queryResult.totalResults)
+      }
+
       setLoading(false)
     }
     initSearch()

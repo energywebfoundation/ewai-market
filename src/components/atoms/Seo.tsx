@@ -24,9 +24,10 @@ export default function Seo({
     >
       <html lang="en" />
 
+      {/*ewai change*/}
       {typeof window !== 'undefined' &&
         window.location &&
-        window.location.hostname !== 'oceanprotocol.com' && (
+        window.location.hostname !== 'energyweb.org' && (
           <meta name="robots" content="noindex,nofollow" />
         )}
 
@@ -47,7 +48,7 @@ export default function Seo({
       />
 
       <meta property="og:site_name" content={siteTitle} />
-      <meta name="twitter:creator" content="@oceanprotocol" />
+      <meta name="twitter:creator" content="@energyweb" />
       <meta name="twitter:card" content="summary_large_image" />
     </Helmet>
   )
