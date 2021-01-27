@@ -2,6 +2,8 @@
 
 # EnergyWeb Renewables & Clean Energy Data Marketplace for Analytics and A.I. Learning
 
+<<<NOTE: THIS REPO IS NOT YET READY FOR USE>>>
+
 # OVERVIEW
 
 Imagine being able to do analysis and learning across clean energy and renewables devices, networks and industries, for example, by analyzing and learning from energy consumption and usage patterns across wind, solar, EV, hydro and geothermal networks by being able to apply AI learning to energy consumption patterns to improve overall grid and IOT device efficiencies. The application of AI techniques can potentially expose heretofore unknown energy consumption patterns across clean energy and renewables networks resulting in efficiency recommendations and improvements.
@@ -68,11 +70,11 @@ The app is a React app built with [Gatsby.js](https://www.gatsbyjs.org) + TypeSc
 To start local development:
 
 ```bash
-git clone git@github.com:oceanprotocol/market.git
-cd market
+git clone https://github.com/energywebfoundation/ewai-market
+cd ewai-market
 
 yarn install
-yarn start
+yarn develop
 ```
 
 This will start the development server under
@@ -97,18 +99,18 @@ Finally, set environment variables to use this local connection in `.env` in the
 
 ```bash
 # modify env variables, Rinkeby is enabled by default when using those files
-cp .env.example .env
+cp .env.example .env.development
 ```
 
 ## 🦑 Environment variables
 
 The `app.config.js` file is setup to prioritize environment variables for setting each Ocean component endpoint. By setting environment variables, you can easily switch between Ocean networks the app connects to, without directly modifying `app.config.js`.
 
-For local development, you can use a `.env` file:
+For local development, you can use a `.env.development` file:
 
 ```bash
 # modify env variables, Rinkeby is enabled by default when using those files
-cp .env.example .env
+cp .env.example .env.development
 ```
 
 ## 🎨 Storybook
@@ -171,11 +173,15 @@ yarn run serve
 
 ## ⬆️ Deployment
 
+TO DO
+
 Every branch or Pull Request is automatically deployed by [Netlify](https://netlify.com) with their GitHub integration. A link to a deployment will appear under each Pull Request.
 
-The latest deployment of the `main` branch is automatically aliased to `market.oceanprotocol.com`.
+The latest deployment of the `main` branch is automatically aliased to `TO DO`.
 
 ## 🏛 License
+
+TO DO
 
 ```text
 Copyright 2021 Ocean Protocol Foundation Ltd.
