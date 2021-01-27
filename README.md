@@ -71,8 +71,8 @@ To start local development:
 git clone git@github.com:oceanprotocol/market.git
 cd market
 
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 This will start the development server under
@@ -83,7 +83,7 @@ To explore the generated GraphQL data structure fire up the accompanying GraphiQ
 
 ### Local components with Barge
 
-If you prefer to connect to locally running components instead of remote connections, you can spin up [`barge`](https://github.com/oceanprotocol/barge) and use a local Ganache network in another terminal before running `npm start`:
+If you prefer to connect to locally running components instead of remote connections, you can spin up [`barge`](https://github.com/oceanprotocol/barge) and use a local Ganache network in another terminal before running `yarn start`:
 
 ```bash
 git clone git@github.com:oceanprotocol/barge.git
@@ -118,7 +118,7 @@ cp .env.example .env
 To run the Storybook server, execute in your Terminal:
 
 ```bash
-npm run storybook
+yarn run storybook
 ```
 
 This will launch the Storybook UI with all stories loaded under [localhost:4000](http://localhost:4000).
@@ -129,10 +129,10 @@ For linting and auto-formatting you can use from the root of the project:
 
 ```bash
 # lint all js with eslint
-npm run lint
+yarn run lint
 
 # auto format all js & css with prettier, taking all configs into account
-npm run format
+yarn run format
 ```
 
 ## 👩‍🔬 Testing
@@ -144,19 +144,19 @@ Test suite for unit tests is setup with [Jest](https://jestjs.io) as a test runn
 To run all linting and unit tests:
 
 ```bash
-npm test
+yarn test
 ```
 
 For local development, you can start the test runner in a watch mode.
 
 ```bash
-npm run test:watch
+yarn run test:watch
 ```
 
 For analyzing the generated JavaScript bundle sizes you can use:
 
 ```bash
-npm run analyze
+yarn run analyze
 ```
 
 ## 🛳 Production
@@ -164,9 +164,9 @@ npm run analyze
 To create a production build, run from the root of the project:
 
 ```bash
-npm run build
+yarn run build
 # serve production build
-npm run serve
+yarn run serve
 ```
 
 ## ⬆️ Deployment
