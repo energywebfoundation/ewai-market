@@ -61,23 +61,20 @@ export default function EnrolPage({
   const ewaiInstance = useEwaiInstance()
   return (
     <>
-      {/*       <Alert text={content.warning} state="info" className={styles.alert} />
-      <br />
-      <br /> */}
       <div>
         <p>{content.description}</p>
       </div>
       <NoLinkSection title="Marketplace Name (EWNS)" text={ewaiInstance.name} />
       <NoLinkSection
-        title="Publish Role Required (EWNS)"
-        text={ewaiInstance.marketplacePublishRole}
+        title="Role Required To Publish Data Assets"
+        text={ewaiInstance.assetPublishRole}
       />
       <div style={{ textAlign: 'center' }}>
         <button
           className="Button-module--button--XbPwb Button-module--primary--3zvkW"
           type="submit"
           onClick={() => {
-            clickSignup(ewaiInstance.marketplacePublishRoleEnrolUrl)
+            clickSignup(ewaiInstance.assetPublishRoleEnrolUrl)
           }}
         >
           ENROL IN SWITCHBOARD

@@ -6,11 +6,9 @@ import styles from './Menu.module.css'
 import { useSiteMetadata } from '../../hooks/useSiteMetadata'
 import Container from '../atoms/Container'
 import UserPreferences from './UserPreferences'
-import Badge from '../atoms/Badge'
 import Logo from '../atoms/Logo'
 import { useOcean } from '@oceanprotocol/react'
 import { EwaiClient } from '../../ewai/client/ewai-js'
-import { bool } from 'yup'
 
 const Wallet = loadable(() => import('./Wallet'))
 
@@ -35,15 +33,18 @@ function MenuLink({ item }: { item: MenuItem }) {
 }
 
 interface MenuProps {
-  enforceMarketplacePublishRole: boolean
+  enforceAssetPublishRole: boolean
 }
 
 // ewai removed beta below:
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export default function Menu({
-  enforceMarketplacePublishRole,
+  enforceAssetPublishRole,
   ...props
 }: MenuProps): ReactElement {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const { menu, siteTitle } = useSiteMetadata()
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const { isInPurgatory, purgatoryData, account } = useOcean()
   const [showPublish, setShowPublish] = useState<boolean>(false)
   const [showEnrol, setShowEnrol] = useState<boolean>(false)
@@ -51,7 +52,7 @@ export default function Menu({
 
   // Set menu options based on account and enforceRoles and user role found state:
   useEffect(() => {
-    if (enforceMarketplacePublishRole && account) {
+    if (enforceAssetPublishRole && account) {
       const checkRoles = async () => {
         const ewaiClient = new EwaiClient({
           username: process.env.EWAI_API_USERNAME,
@@ -61,18 +62,18 @@ export default function Menu({
         const canPubResult = await ewaiClient.ewaiCanPublishAssetsOnMarketplaceAsync(
           account.getId()
         )
-        const hasEwaiPublishRole = canPubResult.canPublish
+        const hasEwaiAssetPublishRole = canPubResult.canPublish
         // Menu options change depending on EWAI user roles
-        setShowPublish(hasEwaiPublishRole)
-        setShowHistory(hasEwaiPublishRole)
+        setShowPublish(hasEwaiAssetPublishRole)
+        setShowHistory(hasEwaiAssetPublishRole)
       }
       checkRoles()
     } else {
-      setShowPublish(account ? true : false)
-      setShowHistory(account ? true : false)
+      setShowPublish(!!account)
+      setShowHistory(!!account)
     }
-    setShowEnrol(account ? true : false)
-  }, [account])
+    setShowEnrol(!!account)
+  }, [account, enforceAssetPublishRole])
 
   return (
     <nav className={styles.menu}>

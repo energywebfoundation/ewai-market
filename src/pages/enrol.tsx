@@ -1,13 +1,11 @@
 import React, { ReactElement } from 'react'
 import PageEnrol from '../components/pages/enrol'
-import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import Page from '../components/templates/Page'
 import { graphql, PageProps } from 'gatsby'
 
 export default function PageGatsbyEnrol(props: PageProps): ReactElement {
-  const { siteTitle, siteTagline } = useSiteMetadata()
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const content = (props.data as any).content.edges[0].node.childPagesJson
-  const { title, description } = content
   return (
     <Page
       title="Enrolment Required To Publish Data Assets"

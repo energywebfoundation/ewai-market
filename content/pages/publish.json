@@ -52,9 +52,9 @@
                 "required": false
             },
             {
-                "name": "ewaiPublishRole",
-                "label": "Publish Role Required",
-                "placeholder": "e.g.: datapub.roles.orgname.iam.ewc",
+                "name": "ewaiDataPublishRole",
+                "label": "Role Required To Publish Data Into This Asset",
+                "placeholder": "e.g.: datapub-windfarm1.roles.windco.iam.ewc",
                 "help": "Enter the EW Switchboard role that DERs must have in order to be able to send data into this dataset. You must have set this up in EW Switchboard",
                 "required": true
             },

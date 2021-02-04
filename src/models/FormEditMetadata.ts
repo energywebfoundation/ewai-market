@@ -3,6 +3,8 @@ import * as Yup from 'yup'
 import { IEwaiLookupAssetResult } from '../ewai/client/ewai-js'
 import * as EwaiUtils from '../ewai/ewaiutils'
 
+/* eslint-disable prefer-destructuring */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const highlight = require('cli-highlight').highlight
 
 export const validationSchema: Yup.SchemaOf<MetadataPublishForm> = Yup.object()
@@ -22,7 +24,9 @@ export const validationSchema: Yup.SchemaOf<MetadataPublishForm> = Yup.object()
       )
       .required('Required'),
     ewaiVendor: Yup.string().nullable(),
-    ewaiPublishRole: Yup.string()
+    /* eslint-disable security/detect-unsafe-regex */
+    /* eslint-disable no-useless-escape */
+    ewaiDataPublishRole: Yup.string()
       .matches(/^([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.ewc$/g, {
         excludeEmptyString: true,
         message: 'Please enter a valid EWNS role name'
@@ -72,7 +76,7 @@ export function getInitialValues(
       ? ewaiAsset.metadata.category
       : '--SELECT ONE',
     ewaiVendor: ewaiAsset?.metadata?.vendor ? ewaiAsset.metadata.vendor : '',
-    ewaiPublishRole: ewaiAsset?.dataPublishRole,
+    ewaiDataPublishRole: ewaiAsset?.dataPublishRole,
     ewaiIncomingMsgFormat: ewaiAsset?.incomingMsgFormat
       ? EwaiUtils.capitalize(ewaiAsset?.incomingMsgFormat)
       : 'Json',

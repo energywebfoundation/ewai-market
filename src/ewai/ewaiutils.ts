@@ -59,7 +59,7 @@ export function transformPublishFormToEwaiAssetInfo(
     'ewaiEwns',
     'ewaiCategory',
     'ewaiVendor',
-    'ewaiPublishRole',
+    'ewaiDataPublishRole',
     'ewaiIncomingMsgFormat',
     'ewaiSchemaValidationOn',
     'ewaiMsgSchema',
@@ -75,7 +75,7 @@ export function transformEditFormToEwaiAssetInfo(
   return pickProps(formValues, [
     'ewaiCategory',
     'ewaiVendor',
-    'ewaiPublishRole',
+    'ewaiDataPublishRole',
     'ewaiIncomingMsgFormat',
     'ewaiSchemaValidationOn',
     'ewaiMsgSchema',

@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
-//import { ReactComponent as LogoAssetFull } from '@oceanprotocol/art/logo/logo.svg'
-//import { ReactComponent as LogoAsset } from '../../images/logo.svg'
+// note the following 2 imports resolve correctly even though typescript is complaining
 import logo from '../../ewai/images/ew-logo.png'
 import logofull from '../../ewai/images/ew-logofull2.png'
 import styles from './Logo.module.css'

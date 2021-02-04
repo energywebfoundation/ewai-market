@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import Button from '../components/atoms/Button'
 
 export default function PageGatsby404(props: PageProps): ReactElement {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const {
     title,
     description,

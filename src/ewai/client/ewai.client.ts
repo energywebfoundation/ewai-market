@@ -98,16 +98,16 @@ export class EwaiClient {
           ewaiInstance {
             name
             apiVersion
-            marketplacePublishRole
-            marketplacePublishRoleEnrolUrl
+            assetPublishRole
+            assetPublishRoleEnrolUrl
+            enforceAssetPublishRole
+            messagingUserRole
+            messagingPublishRole
             switchboardUrl
-            enforceMarketplacePublishRole
             restApiUrl
             graphQlUrl
-            ethRpcUrl
-            ethChainId
             ewcRpcUrl
-            ewcChainId
+            allowResetData
           }
         }
       `
@@ -237,8 +237,10 @@ export class EwaiClient {
         query CanPublish($address: String!) {
           ewaiCanPublishAssetsOnMarketplace(address: $address) {
             ewaiInstance
-            marketplacePublishRole
-            enforceMarketplacePublishRole
+            assetPublishRole
+            enforceAssetPublishRole
+            messagingUserRole
+            messagingPublishRole
             address
             canPublish
             enrolUrl
@@ -327,12 +329,12 @@ export class EwaiClient {
         ewns: assetInfo.ewaiEwns,
         uuid: useUuid,
         createdBy: walletAddress,
-        dataPublishRole: assetInfo.ewaiPublishRole,
+        dataPublishRole: assetInfo.ewaiDataPublishRole,
         pathToMsgTimestamp: assetInfo.ewaiPathToPtdTimestamp
           ? assetInfo.ewaiPathToPtdTimestamp
           : null,
         schemaValidationOn: assetInfo.ewaiSchemaValidationOn === 'Yes',
-        /* eslint-disable no-unneeded-ternary */
+        /* eslint-disable @typescript-eslint/no-unneeded-ternary */
         externalDid: oceanDid ? oceanDid : null, // I actually think the ternary is needed here, we want null specifically (not undefined)
         incomingMsgFormat: assetInfo.ewaiIncomingMsgFormat.toLowerCase(),
         outputDataFormat: assetInfo.ewaiOutputFormat.toLowerCase(),
@@ -504,7 +506,7 @@ export class EwaiClient {
     `,
       variables: {
         externalDid: oceanDid,
-        dataPublishRole: assetInfo.ewaiPublishRole,
+        dataPublishRole: assetInfo.ewaiDataPublishRole,
         pathToMsgTimestamp: assetInfo.ewaiPathToPtdTimestamp
           ? assetInfo.ewaiPathToPtdTimestamp
           : null,

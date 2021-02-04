@@ -4,6 +4,7 @@ import Page from '../components/templates/Page'
 import { graphql, PageProps } from 'gatsby'
 
 export default function PageGatsbyHistory(props: PageProps): ReactElement {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const content = (props.data as any).content.edges[0].node.childPagesJson
   const { title, description } = content
 

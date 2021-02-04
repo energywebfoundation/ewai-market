@@ -5,6 +5,7 @@ import { graphql, PageProps } from 'gatsby'
 import { useEwaiInstance } from '../ewai/client/ewai-js'
 
 export default function PageGatsbyPublish(props: PageProps): ReactElement {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const content = (props.data as any).content.edges[0].node.childPagesJson
   const ewaiInstance = useEwaiInstance()
   const { title, description } = content

@@ -1,5 +1,3 @@
-import { StringSchema } from 'yup'
-
 export enum IncomingMessageFormat {
   json = 'json',
   text = 'text'
@@ -16,14 +14,14 @@ export enum OutputDataFormat {
 export interface IEwaiInstanceResult {
   name: string
   apiVersion: string
-  marketplacePublishRole: string
-  marketplacePublishRoleEnrolUrl: string
+  assetPublishRole: string
+  assetPublishRoleEnrolUrl: string
+  enforceAssetPublishRole: boolean
+  messagingUserRole: string
+  messagingPublishRole: string
   switchboardUrl: string
-  enforceMarketplacePublishRole: boolean
   restApiUrl: string
   graphQlUrl: string
-  ethRpcUrl: string
-  ethChainId: number
   ewcRpcUrl: string
   ewcChainId: number
   addresses: number
@@ -50,9 +48,9 @@ export interface EwaiEnrolQuery {
   ewai: {
     ewaiInstance: {
       name: string
-      marketplacePublishRole: string
-      marketplacePublishRoleEnrolUrl: string
-      enforceMarketplacePublishRole: boolean
+      assetPublishRole: string
+      assetPublishRoleEnrolUrl: string
+      enforceAssetPublishRole: boolean
       graphQlUrl: string
     }
   }
@@ -91,8 +89,10 @@ export interface IEwaiCanCreateAssetResult {
 
 export interface IEwaiCanPublishAssetsOnMarketplaceResult {
   ewaiInstance: string
-  marketplacePublishRole: string
-  enforceMarketplacePublishRole: boolean
+  assetPublishRole: string
+  enforceAssetPublishRole: boolean
+  messagingUserRole: string
+  messagingPublishRole: string
   address: string
   canPublish: boolean
   enrolUrl: string
@@ -146,7 +146,7 @@ export interface IEwaiAssetFormFields {
     | 'Other'
     | string
   ewaiVendor?: string
-  ewaiPublishRole?: string
+  ewaiDataPublishRole?: string
   ewaiIncomingMsgFormat?: 'Json' | 'Text' | string
   ewaiSchemaValidationOn?: 'Yes' | 'No' | string
   ewaiMsgSchema?: string

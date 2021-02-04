@@ -24,7 +24,7 @@ export default function Seo({
     >
       <html lang="en" />
 
-      {/*ewai change*/}
+      {/* ewai change */}
       {typeof window !== 'undefined' &&
         window.location &&
         window.location.hostname !== 'energyweb.org' && (

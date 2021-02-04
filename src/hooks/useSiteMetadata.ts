@@ -44,7 +44,8 @@ const query = graphql`
   }
 `
 
-export function useSiteMetadata() {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export function useSiteMetadata(): any {
   const data = useStaticQuery(query)
 
   const siteMeta = {

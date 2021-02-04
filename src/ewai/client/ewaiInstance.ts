@@ -1,7 +1,8 @@
 import { useStaticQuery, graphql } from 'gatsby'
 import { IEwaiInstanceResult } from './ewai-js'
 
-export const useEwaiInstance = () => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const useEwaiInstance: any = () => {
   const data = useStaticQuery(
     graphql`
       query EwaiInstanceQuery {
@@ -9,16 +10,16 @@ export const useEwaiInstance = () => {
           ewaiInstance {
             name
             apiVersion
-            marketplacePublishRole
-            marketplacePublishRoleEnrolUrl
+            assetPublishRole
+            assetPublishRoleEnrolUrl
+            enforceAssetPublishRole
+            messagingUserRole
+            messagingPublishRole
             switchboardUrl
-            enforceMarketplacePublishRole
             restApiUrl
             graphQlUrl
-            ethRpcUrl
-            ethChainId
             ewcRpcUrl
-            ewcChainId
+            allowResetData
           }
         }
       }
