@@ -2,7 +2,7 @@
 
 # EnergyWeb Renewables & Clean Energy Data Marketplace for Analytics and A.I. Learning
 
-<<<NOTE: THIS REPO IS NOT YET READY FOR USE>>>
+<<<NOTE: THIS REPO IS IN AN ALPHA PROOF-OF-CONCEPT DEMO STATE>>>
 
 # OVERVIEW
 
