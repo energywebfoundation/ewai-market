@@ -7,11 +7,7 @@ export default function Header(): ReactElement {
   const ewaiInstance = useEwaiInstance()
   return (
     <header className={styles.header}>
-      <Menu
-        enforceMarketplacePublishRole={
-          ewaiInstance.enforceMarketplacePublishRole
-        }
-      />
+      <Menu enforceAssetPublishRole={ewaiInstance.enforceAssetPublishRole} />
     </header>
   )
 }

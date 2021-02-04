@@ -25,6 +25,8 @@ export const validationSchema: Yup.SchemaOf<MetadataPublishForm> = Yup.object()
     tags: Yup.string().nullable(),
     links: Yup.array<FileMetadata[]>().nullable(),
     // ---- ewai fields ----
+    /* eslint-disable security/detect-unsafe-regex */
+    /* eslint-disable no-useless-escape */
     ewaiEwns: Yup.string()
       .matches(/^([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.ewc$/g, {
         excludeEmptyString: true,
@@ -41,7 +43,7 @@ export const validationSchema: Yup.SchemaOf<MetadataPublishForm> = Yup.object()
       )
       .required('Required'),
     ewaiVendor: Yup.string().nullable(),
-    ewaiPublishRole: Yup.string()
+    ewaiDataPublishRole: Yup.string()
       .matches(/^([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.ewc$/g, {
         excludeEmptyString: true,
         message: 'Please enter a valid EWNS role name'
@@ -101,7 +103,7 @@ export const initialValues: Partial<MetadataPublishForm> = {
   ewaiEwns: '',
   ewaiCategory: '--SELECT ONE--',
   ewaiVendor: '',
-  ewaiPublishRole: '',
+  ewaiDataPublishRole: '',
   ewaiIncomingMsgFormat: '--SELECT ONE--',
   ewaiSchemaValidationOn: '--SELECT ONE--',
   ewaiMsgSchema: '',

@@ -15,7 +15,7 @@ import FormEditMetadata from './FormEditMetadata'
 import styles from './index.module.css'
 import { Logger } from '@oceanprotocol/lib'
 import MetadataFeedback from '../../../molecules/MetadataFeedback'
-import { graphql, useStaticQuery } from 'gatsby'
+import { navigate, graphql, useStaticQuery } from 'gatsby'
 import * as EwaiUtils from '../../../../ewai/ewaiutils'
 import {
   EwaiClient,
@@ -23,7 +23,6 @@ import {
   IEwaiAssetMetadata,
   useEwaiInstance
 } from '../../../../ewai/client/ewai-js'
-import { navigate } from 'gatsby'
 
 const contentQuery = graphql`
   query EditMetadataQuery {
@@ -73,7 +72,7 @@ export default function Edit({
 
   // Only allow this page if the user has the proper EWAI marketplace data publisher role set
   useEffect(() => {
-    if (ewaiInstance.enforceMarketplacePublishRole && account) {
+    if (ewaiInstance.enforceAssetPublishRole && account) {
       const checkRoles = async () => {
         const ewaiClient = new EwaiClient({
           username: process.env.EWAI_API_USERNAME,
@@ -89,7 +88,7 @@ export default function Edit({
       }
       checkRoles()
     }
-  }, [account])
+  }, [account, ewaiInstance.enforceAssetPublishRole])
 
   async function handleSubmit(
     values: Partial<MetadataPublishForm>,
@@ -159,13 +158,14 @@ export default function Edit({
         graphQlUrl: process.env.EWAI_API_GRAPHQL_URL
       })
 
-      const ewaiAssetMetadata: any = {
+      const ewaiAssetMetadata: IEwaiAssetMetadata = {
         title: values.name,
         description: values.description,
         category: ewaiAssetFormInfo.ewaiCategory,
         vendor: ewaiAssetFormInfo.ewaiVendor,
         tags: ewaiAsset.metadata.tags
       }
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       const updateEwaiAsset = await ewaiClient.updateEwaiAssetAsync(
         ewaiAsset.externalDid,
         ewaiAssetFormInfo,

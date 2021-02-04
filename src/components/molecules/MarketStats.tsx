@@ -1,6 +1,5 @@
 import { Logger } from '@oceanprotocol/lib'
 import React, { ReactElement, useEffect, useState } from 'react'
-import PriceUnit from '../atoms/Price/PriceUnit'
 import axios from 'axios'
 import styles from './MarketStats.module.css'
 import { useInView } from 'react-intersection-observer'
@@ -11,7 +10,7 @@ import {
 } from '../../ewai/client/ewai-js'
 import { useOcean } from '@oceanprotocol/react'
 
-interface MarketStatsResponse {
+/* interface MarketStatsResponse {
   datasets: {
     pools: number
     exchanges: number
@@ -21,13 +20,14 @@ interface MarketStatsResponse {
   owners: number
   ocean: number
   datatoken: number
-}
+} */
 
-const refreshInterval = 60000 // 60 sec.
+const refreshInterval = 60_000 // 60 sec.
 
 export default function MarketStats(): ReactElement {
   const [ref, inView] = useInView()
   const [stats, setStats] = useState<IEwaiStatsResult>()
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const [networkId, setNetworkId] = useState<number>()
   const [networkName, setNetworkName] = useState<string>()
   const ewaiInstance = useEwaiInstance()
@@ -45,15 +45,17 @@ export default function MarketStats(): ReactElement {
         setStats(ewaiStats)
         if (ocean) {
           try {
-            const netId = await web3.eth.net.getId() //await (ocean as any).web3?.eth?.net?.getId()
+            const netId = await web3.eth.net.getId()
 
             // next line is a (not typesafe) hack to get into the ocean object data,
             // but it seems to be only way (that works) to get at the data
             // the reason for the simple hack is that I don't want to setup and maintain (yet another)
             // network id to name mapping, when it already exists and is right there in the ocean object
             // see also: https://github.com/ethereum-lists/chains
+            /* eslint-disable @typescript-eslint/no-explicit-any */
             const netName = (ocean as any)?.config?.network
 
+            /* eslint-disable no-empty */
             if (netId) {
               setNetworkId(netId)
             }
@@ -83,7 +85,7 @@ export default function MarketStats(): ReactElement {
     return () => {
       clearInterval(interval)
     }
-  }, [inView, account, ocean])
+  }, [inView, account, ocean, web3])
 
   /* useEffect(() => {
     async function getNetworkId() {
@@ -92,16 +94,12 @@ export default function MarketStats(): ReactElement {
         setNetworkId(netId)
       }
     }
-
     // Update periodically when in viewport
     const interval = setInterval(getNetworkId, refreshInterval)
-
     if (!inView) {
       clearInterval(interval)
     }
-
     getNetworkId()
-
     return () => {
       clearInterval(interval)
     }

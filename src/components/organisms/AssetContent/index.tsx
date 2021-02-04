@@ -42,11 +42,11 @@ const contentQuery = graphql`
   }
 `
 
-interface IResetDataStatus {
+/* interface IResetDataStatus {
   performed: boolean
   completedOk: boolean | null
   confirmDialogOpen: boolean
-}
+} */
 
 export default function AssetContent(props: AssetContentProps): ReactElement {
   const data = useStaticQuery(contentQuery)
@@ -60,11 +60,11 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
   const [showEditButton, setShowEditButton] = useState<boolean>(false)
   const { ddo, price, metadata } = useAsset()
   const isOwner = accountId === owner
-  //const [resetDataStatus, setResetDataStatus] = useState<IResetDataStatus>({
+  // const [resetDataStatus, setResetDataStatus] = useState<IResetDataStatus>({
   //  performed: false,
   //  completedOk: null,
   //  confirmDialogOpen: false
-  //})
+  // })
   const [resetDataPerformed, setResetDataPerformed] = useState<boolean>(false)
   const [resetDataCompletedOk, setResetDataCompletedOk] = useState<boolean>(
     false
@@ -82,7 +82,7 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
   // Only show edit and reset buttons if they have proper roles set
   useEffect(() => {
     let mounted = true
-    if (ewaiInstance.enforceMarketplacePublishRole && accountId && isOwner) {
+    if (ewaiInstance.enforceAssetPublishRole && accountId && isOwner) {
       const checkRoles = async () => {
         const ewaiClient = new EwaiClient({
           username: process.env.EWAI_API_USERNAME,
@@ -110,12 +110,13 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
   function handleEditButton() {
     // move user's focus to top of screen
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-    //setResetDataStatus({
+    // setResetDataStatus({
     //  performed: false,
     //  completedOk: null,
     //  confirmDialogOpen: false
-    //})
+    // })
     setResetDataConfirmDialogOpen(false)
+    setResetDataPerformed(false)
     setShowEdit(true)
   }
 
@@ -145,11 +146,11 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
         <button
           className="Button-module--button--XbPwb Button-module--primary--3zvkW"
           onClick={() => {
-            //setResetDataStatus({
+            // setResetDataStatus({
             //  performed: false,
             //  completedOk: null,
             //  confirmDialogOpen: false
-            //})
+            // })
             setResetDataConfirmDialogOpen(false)
             performEwaiResetData()
           }}
@@ -160,11 +161,11 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
         <button
           className="Button-module--button--XbPwb Button-module--primary--3zvkW"
           onClick={() => {
-            //setResetDataStatus({
+            // setResetDataStatus({
             //  performed: false,
             //  completedOk: null,
             //  confirmDialogOpen: false
-            //})
+            // })
             setResetDataConfirmDialogOpen(false)
           }}
         >
@@ -175,11 +176,11 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
   }
 
   function performEwaiResetData() {
-    //setResetDataStatus({
+    // setResetDataStatus({
     //  performed: false,
     //  completedOk: null,
     //  confirmDialogOpen: false
-    //})
+    // })
     setResetDataPerformed(false)
     const ewaiClient = new EwaiClient({
       username: process.env.EWAI_API_USERNAME,
@@ -189,20 +190,20 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
     ewaiClient
       .resetEwaiAssetDataAsync(ddo.id)
       .then((result) => {
-        //setResetDataStatus({
+        // setResetDataStatus({
         //  performed: true,
         //  completedOk: result,
         //  confirmDialogOpen: false
-        //})
+        // })
         setResetDataCompletedOk(result)
         setResetDataPerformed(true)
       })
       .catch((error) => {
-        //setResetDataStatus({
+        // setResetDataStatus({
         //  performed: true,
         //  completedOk: false,
         //  confirmDialogOpen: false
-        //})
+        // })
         setResetDataCompletedOk(false)
         setResetDataPerformed(true)
       })
@@ -217,6 +218,7 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
     showEditButtons && resetDataPerformed && resetDataCompletedOk
   const showResetDataError =
     showEditButtons && resetDataPerformed && !resetDataCompletedOk
+  const showResetDataButton = ewaiInstance.allowResetData
 
   return showEdit ? (
     <Edit setShowEdit={setShowEdit} />
@@ -248,11 +250,11 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
                 <ConfirmResetDataModal
                   isOpen={resetDataConfirmDialogOpen}
                   onToggleModal={() =>
-                    //setResetDataStatus({
+                    //s etResetDataStatus({
                     //  performed: false,
                     //  completedOk: undefined,
                     //  confirmDialogOpen: false
-                    //})
+                    // })
                     setResetDataConfirmDialogOpen(false)
                   }
                 />
@@ -271,11 +273,11 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
                       : 'Error Resetting Data',
                     style: 'primary',
                     handleAction: () => {
-                      //setResetDataStatus({
+                      // setResetDataStatus({
                       //  performed: false,
                       //  completedOk: undefined,
                       //  confirmDialogOpen: false
-                      //})
+                      // })
                       setResetDataPerformed(false)
                     }
                   }}
@@ -285,22 +287,23 @@ export default function AssetContent(props: AssetContentProps): ReactElement {
                 <div className={styles.ownerActions}>
                   <Button style="text" size="small" onClick={handleEditButton}>
                     Edit Metadata
-                  </Button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <Button
-                    style="text"
-                    size="small"
-                    onClick={() => {
-                      //setResetDataStatus({
-                      //  performed: false,
-                      //  completedOk: undefined,
-                      //  confirmDialogOpen: true
-                      //})
-                      setResetDataConfirmDialogOpen(true)
-                    }}
-                  >
-                    Reset Data
-                  </Button>
+                  </Button>{' '}
+                  {showResetDataButton && (
+                    <Button
+                      style="text"
+                      size="small"
+                      onClick={() => {
+                        // setResetDataStatus({
+                        //  performed: false,
+                        //  completedOk: undefined,
+                        //  confirmDialogOpen: true
+                        // })
+                        setResetDataConfirmDialogOpen(true)
+                      }}
+                    >
+                      Reset Data
+                    </Button>
+                  )}
                 </div>
               )}
             </>

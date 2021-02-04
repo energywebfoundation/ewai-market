@@ -45,9 +45,10 @@ export const GraphQlCallSuccess = 'OK'
 // -------------------------------
 // simple logger
 // -------------------------------
-function log(msg: string): void {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function log(...args: any[]): void {
   if (process.env.EWAI_LOG_GQL_CALLS === 'true') {
-    console.log(msg)
+    console.log(...args)
   }
 }
 
@@ -68,19 +69,14 @@ export async function ewaiCallGraphQlAsync<T>(
   /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
   config?: any
 ): Promise<IGraphQLResult<T>> {
-  log(
-    `EWAICALL('${dataName}','${graphQlUrl}','${JSON.stringify(
-      body
-    )}','${JSON.stringify(config)}')`
-  )
-
+  log('EWAICALL(', `"${dataName}",`, `"${graphQlUrl}",`, body, ',', config, ')')
   try {
     const {
       data: result,
       status,
       statusText
     } = await axios.post<IGraphQLResultInternal>(graphQlUrl, body, config)
-    log(`EWAIRESULT(${status},'${statusText}','${JSON.stringify(result)}')`)
+    log('EWAIRESULT(', `${status},`, `"${statusText}",`, result, ')')
     let message: string
     let messageFull: string
     /* if (status !== AxiosCallSuccess) {

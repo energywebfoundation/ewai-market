@@ -27,6 +27,8 @@ You will not be able to use this repo unless you properly setup EWAI-SERVER firs
 
 [Read the EWAI Docs](https://energy-web-foundation-energyweb-ewai.readthedocs-hosted.com/)
 
+Note: Many of the EWAI related settings for this marketplace are coming from the EWAI Instance it is connected to (via ewaiInstance GraphQL calls). Hence, many of the config settings are in the EWAI SERVER (not in this repo), which is why there are only a few Ocean related config settings in the .env.\* files in this repo.
+
 # PREREQUISITES
 
 In order to setup and run this EWAI-MARKET code, you must first learn, configure and setup an [EWAI-SERVER](https://github.com/energywebfoundation/ewai) instance. Therefore, please start with [that repo]https://github.com/energywebfoundation/ewai) as it contains the main documentation and instructions for setting up an EWAI instance. EWAI also requires an understanding (and prior configuration) of all of the following EnergyWeb subsystems:

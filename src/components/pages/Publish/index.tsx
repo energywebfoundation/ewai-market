@@ -40,7 +40,7 @@ export default function PublishPage({
 
   // Only allow this page if the user has the proper EWAI marketplace data publisher role set
   useEffect(() => {
-    if (ewaiInstance.enforceMarketplacePublishRole && account) {
+    if (ewaiInstance.enforceAssetPublishRole && account) {
       const checkRoles = async () => {
         const ewaiClient = new EwaiClient({
           username: process.env.EWAI_API_USERNAME,

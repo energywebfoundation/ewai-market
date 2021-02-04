@@ -1,10 +1,10 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
+import { EwaiClient } from './src/ewai/client/ewai-js'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const dotenv = require('./src/ewai/dotenv-expand')
 const siteContent = require('./content/site.json')
 const appConfig = require('./app.config')
 const ewaiConfig = require('./src/ewai/ewai.config')
-import { EwaiClient } from './src/ewai/client/ewai-js'
-
-console.log(process.env.EWAI_API_GRAPHQL_URL)
 
 export default {
   siteMetadata: {
@@ -65,11 +65,13 @@ export default {
         fieldName: 'ewai',
         url: process.env.EWAI_API_GRAPHQL_URL,
         // HTTP headers
-        //headers: {
+        // headers: {
         //  Authorization: `Bearer xxxxx`,
-        //},
+        // },
         // HTTP headers alternatively accepts a function (allows async)
-        headers: async () => {
+        headers: async (): Promise<{
+          Authorization: string
+        }> => {
           const ewaiClient = new EwaiClient({
             username: process.env.EWAI_API_USERNAME,
             password: process.env.EWAI_API_PASSWORD,

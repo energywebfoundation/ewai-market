@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react'
-import MetaItem from './MetaItem'
 import styles from './MetaSecondary.module.css'
 import Tags from '../../atoms/Tags'
-import Button from '../../atoms/Button'
 import { useAsset } from '../../../providers/Asset'
-const highlight = require('cli-highlight').highlight
 import { useEwaiInstance } from '../../../ewai/client/ewai-js'
+/* eslint @typescript-eslint/no-var-requires: "off" */
+const highlight = require('cli-highlight').highlight
 
 export default function MetaEwai(): ReactElement {
   const { ewaiAsset } = useAsset()
@@ -15,7 +14,7 @@ export default function MetaEwai(): ReactElement {
     <aside className={styles.metaSecondary}>
       <div>
         <p>EWNS:</p>
-        <Tags items={[ewaiInstance.name, '=>', ewaiAsset?.ewns]} />
+        <Tags items={[ewaiInstance.name, '=>', ewaiAsset?.ewns]} noLinks />
       </div>
       <div>
         <p>Output Data Format:</p>
@@ -25,19 +24,37 @@ export default function MetaEwai(): ReactElement {
               ? [ewaiAsset?.defaultOutputFormat]
               : []
           }
+          noLinks
         />
       </div>
       <div>
         <p>Incoming Message Format:</p>
-        <Tags items={[ewaiAsset?.incomingMsgFormat]} />
+        <Tags items={[ewaiAsset?.incomingMsgFormat]} noLinks />
       </div>
       <div>
-        <p>Data Publish Role Required:</p>
-        <Tags items={[ewaiAsset?.dataPublishRole]} />
+        <p>Asset Data Publish Roles Required:</p>
+        <p style={{ marginLeft: '10px', color: 'yellow' }}>
+          NOTE: A DER must be provisioned with all three of the following roles
+          In order for it to send PTD data packets (messages) into this energy
+          data asset. The first role is required to connect to EW-Messaging, the
+          second role is to enable publishing messages to the EW-Messaging
+          channel for this marketplace, and the third role is required to
+          publish messages into this specific {ewaiAsset?.metadata?.title} data
+          asset.
+        </p>
+        <br />
+        <Tags
+          items={[
+            ewaiInstance.messagingUserRole,
+            ewaiInstance.messagingPublishRole,
+            ewaiAsset?.dataPublishRole
+          ]}
+          noLinks
+        />
       </div>
       <div>
         <p>Schema Validation Enabled:</p>
-        <Tags items={[ewaiAsset?.schemaValidationOn ? 'Yes' : 'No']} />
+        <Tags items={[ewaiAsset?.schemaValidationOn ? 'Yes' : 'No']} noLinks />
       </div>
       <div>
         <p>Message Schema (if any):</p>
@@ -52,12 +69,12 @@ export default function MetaEwai(): ReactElement {
           }
           rows={25}
           cols={60}
-          readOnly={true}
+          readOnly
         />
       </div>
       <div>
         <p>Path to Message Timestamp:</p>
-        <Tags items={[ewaiAsset?.pathToMsgTimestamp]} />
+        <Tags items={[ewaiAsset?.pathToMsgTimestamp]} noLinks />
       </div>
     </aside>
   )
