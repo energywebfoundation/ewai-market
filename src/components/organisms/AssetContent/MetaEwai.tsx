@@ -46,7 +46,7 @@ export default function MetaEwai(): ReactElement {
         <Tags
           items={[
             ewaiInstance.messagingUserRole,
-            ewaiInstance.messagingPublishRole,
+            ewaiInstance.ewaiMessagingChannelPublishRole,
             ewaiAsset?.dataPublishRole
           ]}
           noLinks
