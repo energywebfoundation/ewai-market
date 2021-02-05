@@ -14,7 +14,7 @@ export const useEwaiInstance: any = () => {
             assetPublishRoleEnrolUrl
             enforceAssetPublishRole
             messagingUserRole
-            messagingPublishRole
+            ewaiMessagingChannelPublishRole
             switchboardUrl
             restApiUrl
             graphQlUrl

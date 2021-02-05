@@ -102,7 +102,7 @@ export class EwaiClient {
             assetPublishRoleEnrolUrl
             enforceAssetPublishRole
             messagingUserRole
-            messagingPublishRole
+            ewaiMessagingChannelPublishRole
             switchboardUrl
             restApiUrl
             graphQlUrl
@@ -240,7 +240,7 @@ export class EwaiClient {
             assetPublishRole
             enforceAssetPublishRole
             messagingUserRole
-            messagingPublishRole
+            ewaiMessagingChannelPublishRole
             address
             canPublish
             enrolUrl

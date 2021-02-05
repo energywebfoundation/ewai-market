@@ -18,7 +18,7 @@ export interface IEwaiInstanceResult {
   assetPublishRoleEnrolUrl: string
   enforceAssetPublishRole: boolean
   messagingUserRole: string
-  messagingPublishRole: string
+  ewaiMessagingChannelPublishRole: string
   switchboardUrl: string
   restApiUrl: string
   graphQlUrl: string
@@ -92,7 +92,7 @@ export interface IEwaiCanPublishAssetsOnMarketplaceResult {
   assetPublishRole: string
   enforceAssetPublishRole: boolean
   messagingUserRole: string
-  messagingPublishRole: string
+  ewaiMessagingChannelPublishRole: string
   address: string
   canPublish: boolean
   enrolUrl: string
