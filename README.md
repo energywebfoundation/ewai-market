@@ -67,8 +67,17 @@ Setup the environment variables in `.env` for the app:
 cp .env.example .env.development
 ```
 
+Install required dependencies:
+
 ```bash
 yarn install
+```
+
+NOTE: Due to how GatsbyJS works, you cannot even compile (yarn develop) this repo unless you have EWAI-SERVER already up and running somewhere.
+
+Build site:
+
+```bash
 yarn develop
 ```
 
@@ -148,7 +157,7 @@ yarn run serve
 
 A sample deployment of EWAI-MARKET is... (TODO)
 
-A subsequent pull/mmerge from the Ocean Protocol V3 repo to add compute-to-data and subscription data assets when the Ocean V3 marketplace code goes final. (TODO)
+A subsequent pull/mmerge from the main Ocean Protocol V3 repo is planned (but not yet scheduled) when the Ocean V3 marketplace code goes final. This will add compute-to-data and subscription data assets. (TODO)
 
 ## 🏛 License
 
