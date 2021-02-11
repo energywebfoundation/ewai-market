@@ -1,80 +1,68 @@
 ![EWAI Header](https://adivate.net/doc/ewai/header2.jpg)
 
-# EnergyWeb Renewables & Clean Energy Data Marketplace for Analytics and A.I. Learning
+# EWAI-MARKET (MARKETPLACE)
 
-<<<NOTE: THIS REPO IS IN AN ALPHA PROOF-OF-CONCEPT DEMO STATE>>>
+EnergyWeb - A Renewables & Clean Energy Data Marketplace for Analytics and A.I. Learning Powered by Ocean Protocol
+
+---
+
+## **🐲🦑 THERE BE ELVES AND GREMLINS LURKING. THIS REPO IS IN AN ALPHA PROTOTYPE STAGE AND YOU CAN EXPECT TO RUN INTO PROBLEMS. 🦑🐲**
+
+---
 
 # OVERVIEW
 
-Imagine being able to do analysis and learning across clean energy and renewables devices, networks and industries, for example, by analyzing and learning from energy consumption and usage patterns across wind, solar, EV, hydro and geothermal networks by being able to apply AI learning to energy consumption patterns to improve overall grid and IOT device efficiencies. The application of AI techniques can potentially expose heretofore unknown energy consumption patterns across clean energy and renewables networks resulting in efficiency recommendations and improvements.
+EWAI, short for EnergyWeb A.I., is a conceptual prototype for a marketplace of clean energy datasets containing energy production and consumption data points fed by DERs running EnergyWeb EW-DOS and then published in on-chain data assets powered by Ocean Protocol.
 
-EWAI, short for EnergyWeb A.I., is a conceptual prototype for an EW to OCEAN API bridge and subsystem which enables the creation of OCEAN IOT Energy Data Marketplace(s) fed by millions/billions of EW-DOS enabled devices. The EW-DOS devices send Power Telemetry Data (PDT) about energy and power usage and consumption metrics to the marketplace(s). OCEAN's data marketplaces would be an ideal way to apply AI learning to improve the energy efficiency of IOT devices and networks by studying patterns visible from their real-world consumption data. Gathering decentralized PTD data together into Ocean data tokens would also allow algos to be developed and applied to energy data which may look for and identify unusual and heretofore unknown consumption patterns, and even potentially start automatically addressing areas of network and system efficiency improvements and optimizations through learning techniques.
+Imagine being able to do analysis and learning on the power production and consumption data from millions (and even billions) of distributed/decentralized energy IOT devices (distributed energy resources, or DERs). The EWAI Marketplace is a prototype concept which shows how this could be achieved, by collecting permissioned and role-authenticated Power Telemetry Data (PTD) message packet streams into datasets (data assets) which are then be published in a clean energy data marketplace. Researchers and industry participants could then find and analyze these data sets to potentially identify heretofore unknown energy consumption patterns across clean energy and renewables networks resulting in efficiency recommendations and improvements back to the device manufacturers and network operators. Long term, micro payments back to the DER owners in return for their permissioned sharing of energy data is also possible (but beyond the scope of the current prototype). It would even be possible to cross-analyze datasets from different energy sectors, such as wind, hydro, solar, geothermal and EV markets, and even further correlate such data-sets with other public domain datasets such as weather. A.I. algos could then be trained using these datasets to look for potential grid efficiency improvements.
 
 An EWAI deployment consists of an [EWAI-SERVER](https://github.com/energywebfoundation/ewai) instance paired with an [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market) instance (along with supporting EnergyWeb components):
 
-1. [EWAI-SERVER](https://github.com/energywebfoundation/ewai): This is the server component which offers a streaming data cache for DER PTD (Power Telemetry Data), and
-2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the [V3 Ocean Protocol Marketplace](https://github.com/oceanprotocol/market), whereby the EWAI energy data assets can be published via Ocean Protocol data tokens. You should familiarize yourself first therefore with Ocean Protocol, as understanding how Ocean works will be necessary also.
+1. [EWAI-SERVER](https://github.com/energywebfoundation/ewai): This is the server component which offers a data storage cache for assembling streaming DER PTD message data packets into time-series datasets, and
+2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the [Ocean Protocol V3 Marketplace](https://github.com/oceanprotocol/market), whereby those EWAI energy datasets can be published in a marketplace format utilizing the power of Ocean Protocol data tokens. An understanding of how Ocean Protocol works will therefore also be necessary.
 
----
+# START HERE
 
-**🐲🦑 THERE BE ELVES AND GREMLINS LURKING. This is in ALPHA state and you can expect to run into problems. If you see any issues, please open up [a new issue](#). 🦑🐲**
+A considerable amount of setup is required before this repo can be used. Please therefore start by [Reading the EWAI Docs](https://energy-web-foundation-energyweb-ewai.readthedocs-hosted.com/)
 
----
-
-# START HERE FIRST!!
-
-You will not be able to use this repo unless you properly setup EWAI-SERVER first and understand what is needed. Please therefore start here FIRST:
-
-[Read the EWAI Docs](https://energy-web-foundation-energyweb-ewai.readthedocs-hosted.com/)
-
-Note: Many of the EWAI related settings for this marketplace are coming from the EWAI Instance it is connected to (via ewaiInstance GraphQL calls). Hence, many of the config settings are in the EWAI SERVER (not in this repo), which is why there are only a few Ocean related config settings in the .env.\* files in this repo.
+Additionally, many of the configuration settings for this marketplace are coming from the EWAI-SERVER instance that is paired with via ewaiInstance GraphQL calls. That is why there are only a few Ocean Protocol related config settings in the .env. files for this repo.
 
 # PREREQUISITES
 
-In order to setup and run this EWAI-MARKET code, you must first learn, configure and setup an [EWAI-SERVER](https://github.com/energywebfoundation/ewai) instance. Therefore, please start with [that repo]https://github.com/energywebfoundation/ewai) as it contains the main documentation and instructions for setting up an EWAI instance. EWAI also requires an understanding (and prior configuration) of all of the following EnergyWeb subsystems:
+EWAI-MARKET requires an understanding (and prior configuration) of all of the following EnergyWeb subsystems:
 
 1. Energy Web: https://energyweb.org
 2. Energy Web Chain (EWC): https://www.energyweb.org/technology/energy-web-chain/
 3. Energy Web Token (EWT): https://www.energyweb.org/technology/token/
-4. Ocean Protocol: https://oceanprotocol.com/
-5. Energy Web EW-DOS: https://www.energyweb.org/technology/ew-dos/
-6. Energy Web Name Service (EWNS): https://ens.energyweb.org
-7. Energy Web EW-Switchboard: https://switchboard.energyweb.org/
-8. Energy Web EW-Messaging: https://github.com/energywebfoundation/messaging
-9. Decentralized Identifiers (DIDs): https://github.com/energywebfoundation/passport-did-auth, https://github.com/energywebfoundation/iam-client-lib, https://en.wikipedia.org/wiki/Decentralized_Identifiers
-
-The Instructions below are about how to setup and utilize this marketplace component.
+4. Energy Web EW-DOS: https://www.energyweb.org/technology/ew-dos/
+5. Energy Web Name Service (EWNS): https://ens.energyweb.org
+6. Energy Web EW-Switchboard: https://switchboard.energyweb.org/
+7. Energy Web EW-Messaging: https://github.com/energywebfoundation/messaging
+8. Decentralized Identifiers (DIDs): https://github.com/energywebfoundation/passport-did-auth, https://github.com/energywebfoundation/iam-client-lib, https://en.wikipedia.org/wiki/Decentralized_Identifiers
+9. Ocean Protocol: https://oceanprotocol.com/
+10. Ocean Protocol V3 Marketplace: https://github.com/oceanprotocol/market
 
 # EWAI-MARKETPLACE
 
-[![Build Status](https://travis-ci.com/oceanprotocol/market.svg?token=3psqw6c8KMDqfdGQ2x6d&branch=main)](https://travis-ci.com/oceanprotocol/market)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c85f4d8b-95e1-4010-95a4-2bacd8b90981/deploy-status)](https://app.netlify.com/sites/market-oceanprotocol/deploys)
-[![Maintainability](https://api.codeclimate.com/v1/badges/d114f94f75e6efd2ee71/maintainability)](https://codeclimate.com/repos/5e3933869a31771fd800011c/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/d114f94f75e6efd2ee71/test_coverage)](https://codeclimate.com/repos/5e3933869a31771fd800011c/test_coverage)
-[![js oceanprotocol](https://img.shields.io/badge/js-oceanprotocol-7b1173.svg)](https://github.com/oceanprotocol/eslint-config-oceanprotocol)
+The instructions below are about how to setup this marketplace component. The app is a React app built with [Gatsby.js](https://www.gatsbyjs.org) + TypeScript + CSS modules and will connect to Ocean components in Rinkeby by default. A successful build should result in a site which looks similar to this (without any data assets in it of course yet):
 
-**Table of Contents**
-
-- [🏄 Get Started](#-get-started)
-  - [Local components with Barge](#local-components-with-barge)
-- [🦑 Environment variables](#-environment-variables)
-- [🎨 Storybook](#-storybook)
-- [✨ Code Style](#-code-style)
-- [👩‍🔬 Testing](#-testing)
-- [🛳 Production](#-production)
-- [⬆️ Deployment](#️-deployment)
-- [🏛 License](#-license)
-
-## 🏄 Get Started
-
-The app is a React app built with [Gatsby.js](https://www.gatsbyjs.org) + TypeScript + CSS modules and will connect to Ocean components in Rinkeby by default.
+![EWAI Header](https://adivate.net/doc/ewai/market-screenshot.jpg)
 
 To start local development:
 
 ```bash
 git clone https://github.com/energywebfoundation/ewai-market
 cd ewai-market
+```
 
+Setup the environment variables to use this local connection in `.env` in the app:
+
+```bash
+# modify env variables, Rinkeby is enabled by default when using those files
+cp .env.example .env.development
+```
+
+```bash
 yarn install
 yarn develop
 ```
@@ -82,40 +70,14 @@ yarn develop
 This will start the development server under
 `http://localhost:8000`.
 
-To explore the generated GraphQL data structure fire up the accompanying GraphiQL IDE under
+To explore the generated GraphQL data structure fire up the accompanying GraphQL IDE under
 `http://localhost:8000/__graphql`.
 
-### Local components with Barge
+### Local Ocean Protocol Components & Config Options
 
-If you prefer to connect to locally running components instead of remote connections, you can spin up [`barge`](https://github.com/oceanprotocol/barge) and use a local Ganache network in another terminal before running `yarn start`:
+It is possible to run the Ocean Protocol components locally using Barge and Ganache instead of connecting to Rinkeby if desired. Please see the instructions in the main [Ocean Protocol V3 Marketplace](https://github.com/oceanprotocol/market) repo on how to do this. See the Ocean Protocol V3 Marketplace repo also for further customization options and environment variable settings. They are the same for this repo.
 
-```bash
-git clone git@github.com:oceanprotocol/barge.git
-cd barge
-
-# startup with local Ganache node
-./start_ocean.sh
-```
-
-Finally, set environment variables to use this local connection in `.env` in the app:
-
-```bash
-# modify env variables, Rinkeby is enabled by default when using those files
-cp .env.example .env.development
-```
-
-## 🦑 Environment variables
-
-The `app.config.js` file is setup to prioritize environment variables for setting each Ocean component endpoint. By setting environment variables, you can easily switch between Ocean networks the app connects to, without directly modifying `app.config.js`.
-
-For local development, you can use a `.env.development` file:
-
-```bash
-# modify env variables, Rinkeby is enabled by default when using those files
-cp .env.example .env.development
-```
-
-## 🎨 Storybook
+### 🎨 Storybook
 
 [Storybook](https://storybook.js.org) is set up for this project and is used for UI development of components. Stories are created inside `src/components/` alongside each component in the form of `ComponentName.stories.tsx`.
 
@@ -175,18 +137,17 @@ yarn run serve
 
 ## ⬆️ Deployment
 
-TO DO
-
-Every branch or Pull Request is automatically deployed by [Netlify](https://netlify.com) with their GitHub integration. A link to a deployment will appear under each Pull Request.
-
-The latest deployment of the `main` branch is automatically aliased to `TO DO`.
+A sample deployment of EWAI-MARKET is... (TODO)
+Also, a subsequent merge is planned to bring in Ocean Protocol compute-to-data and subscription data assets when the Ocean V3 marketplace code goes final. (TODO)
 
 ## 🏛 License
 
-TO DO
+```text
+EnergyWeb: This project is licensed under the GPLv3 License - see the LICENSE file for details.
+```
 
 ```text
-Copyright 2021 Ocean Protocol Foundation Ltd.
+Ocean Protocol: Copyright 2021 Ocean Protocol Foundation Ltd.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
