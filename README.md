@@ -80,7 +80,7 @@ To explore the generated GraphQL data structure fire up the accompanying GraphQL
 
 A successful build should result in a site which looks similar to the following screenshot (without any data assets in it of course yet):
 
-![MARKETPLACE Screenshot](https://adivate.net/doc/ewai/market-screenshot.jpg)
+![MARKETPLACE Screenshot](https://adivate.net/doc/ewai/market-screenshot2.jpg)
 
 ### Local Ocean Protocol Components & Config Options
 
