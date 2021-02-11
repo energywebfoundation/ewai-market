@@ -16,16 +16,16 @@ EWAI, short for EnergyWeb A.I., is a conceptual prototype for a marketplace of c
 
 Imagine being able to do analysis and learning on the power production and consumption data from millions (and even billions) of distributed/decentralized energy IOT devices (distributed energy resources, or DERs). The EWAI Marketplace is a prototype concept which shows how this could be achieved, by collecting permissioned and role-authenticated Power Telemetry Data (PTD) message packet streams into datasets (data assets) which are then be published in a clean energy data marketplace. Researchers and industry participants could then find and analyze these data sets to potentially identify heretofore unknown energy consumption patterns across clean energy and renewables networks resulting in efficiency recommendations and improvements back to the device manufacturers and network operators. Long term, micro payments back to the DER owners in return for their permissioned sharing of energy data is also possible (but beyond the scope of the current prototype). It would even be possible to cross-analyze datasets from different energy sectors, such as wind, hydro, solar, geothermal and EV markets, and even further correlate such data-sets with other public domain datasets such as weather. A.I. algos could then be trained using these datasets to look for potential grid efficiency improvements.
 
-An EWAI deployment consists of an [EWAI-SERVER](https://github.com/energywebfoundation/ewai) instance paired with an [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market) instance (along with supporting EnergyWeb components):
-
-1. [EWAI-SERVER](https://github.com/energywebfoundation/ewai): This is the server component which offers a data storage cache for assembling streaming DER PTD message data packets into time-series datasets, and
-2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the [Ocean Protocol V3 Marketplace](https://github.com/oceanprotocol/market), whereby those EWAI energy datasets can be published in a marketplace format utilizing the power of Ocean Protocol data tokens. An understanding of how Ocean Protocol works will therefore also be necessary.
-
 # START HERE
 
 A considerable amount of setup is required before this repo can be used. Please therefore start by [Reading the EWAI Docs](https://energy-web-foundation-energyweb-ewai.readthedocs-hosted.com/)
 
 Additionally, many of the configuration settings for this marketplace are coming from the EWAI-SERVER instance that is paired with via ewaiInstance GraphQL calls. That is why there are only a few Ocean Protocol related config settings in the .env. files for this repo.
+
+An EWAI deployment consists of an [EWAI-SERVER](https://github.com/energywebfoundation/ewai) instance paired with an [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market) instance (along with supporting EnergyWeb components):
+
+1. [EWAI-SERVER](https://github.com/energywebfoundation/ewai): This is the server component which offers a data storage cache for assembling streaming DER PTD message data packets into time-series datasets, and
+2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the [Ocean Protocol V3 Marketplace](https://github.com/oceanprotocol/market), whereby those EWAI energy datasets can be published in a marketplace format utilizing the power of Ocean Protocol data tokens. An understanding of how Ocean Protocol works will therefore also be necessary.
 
 # PREREQUISITES
 
