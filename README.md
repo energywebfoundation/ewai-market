@@ -4,12 +4,6 @@
 
 EnergyWeb - A Renewables & Clean Energy Data Marketplace for Analytics and A.I. Learning Powered by Ocean Protocol
 
----
-
-## **🐲🦑 THERE BE ELVES AND GREMLINS LURKING. THIS REPO IS IN AN ALPHA PROTOTYPE STAGE AND YOU CAN EXPECT TO RUN INTO PROBLEMS. 🦑🐲**
-
----
-
 # OVERVIEW
 
 EWAI, short for EnergyWeb A.I., is a conceptual prototype for a marketplace of clean energy datasets containing energy production and consumption data points fed by DERs running EnergyWeb EW-DOS and then published in on-chain data assets powered by Ocean Protocol.
@@ -30,6 +24,12 @@ An EWAI deployment consists of an [EWAI-SERVER](https://github.com/energywebfoun
 2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the [Ocean Protocol V3 Marketplace](https://github.com/oceanprotocol/market), whereby those EWAI energy datasets can be published in a marketplace format utilizing the power of Ocean Protocol data tokens. An understanding of how Ocean Protocol works will therefore also be necessary.
 
 Additionally, many of the configuration settings for this marketplace are coming from the EWAI-SERVER instance that is paired with via ewaiInstance GraphQL calls. That is why there are only a few Ocean Protocol related config settings in the .env. files for this repo.
+
+---
+
+### **🐲🦑 THERE BE ELVES AND GREMLINS LURKING. THIS REPO IS IN AN ALPHA PROTOTYPE STAGE AND YOU CAN EXPECT TO RUN INTO PROBLEMS. 🦑🐲**
+
+---
 
 # PREREQUISITES
 
