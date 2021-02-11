@@ -137,7 +137,8 @@ export default function PublishPage({
 
       // We now have the EWAI asset created, but we need to tell Ocean
       // where it's data files will be (set data and preview urls):
-      // remember to set the url to matche the current ewaiAssetFormInfo.ewaiOutputFormat specified:
+      // we are just using the default format Urls which should match what
+      // output format the user specified on the asset:
       const dataFile: OceanFile = {
         url: createEwaiAsset.dataUrls[0],
         contentType: EwaiUtils.outputDataFormatToFileContentType(
