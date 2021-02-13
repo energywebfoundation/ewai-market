@@ -27,7 +27,7 @@ Additionally, many of the configuration settings for this marketplace are coming
 
 # PREREQUISITES
 
-EWAI-MARKET requires an understanding (and prior configuration) of all of the following EnergyWeb subsystems:
+The EWAI project integrates a number of newly developed (and still developing) decentralized technologies and platforms integrated together into a functioning energy marketplace prototype. Also, there is a considerable amount of setup involved in getting EWAI running beyond just building this repo. Familiarity with all of the following is required:
 
 1. Energy Web: https://energyweb.org
 2. Energy Web Chain (EWC): https://www.energyweb.org/technology/energy-web-chain/
@@ -40,8 +40,25 @@ EWAI-MARKET requires an understanding (and prior configuration) of all of the fo
 
 Further, knowledge of Ocean Protocol is required:
 
-1. Ocean Protocol: https://oceanprotocol.com/
-2. Ocean Protocol V3 Marketplace: https://github.com/oceanprotocol/market
+9. Ocean Protocol: https://oceanprotocol.com/
+10. Ocean Protocol V3 Marketplace: https://github.com/oceanprotocol/market
+
+All of the following platforms/technologies are used in building the EWAI prototype:
+
+11. Node.js (>= v14): https://nodejs.org/en/
+12. Nest JS: https://nestjs.com/
+13. PostgreSQL: https://www.postgresql.org/
+14. TimescaleDB (optional): https://www.timescale.com/
+15. JavaScript: https://en.wikipedia.org/wiki/JavaScript
+16. TypeScript: https://www.typescriptlang.org/
+17. React: https://reactjs.org/
+18. Gatsby: https://www.gatsbyjs.com/
+19. Prisma ORM: https://prisma.io
+20. Web 3 dApps: https://web3js.readthedocs.io/en/v1.3.0/#
+21. Graph QL: https://graphql.org/
+22. Passport JS: http://www.passportjs.org/
+
+To use the EWAI-MARKET repo, you must also have successfully built and deployed an EWAI-SERVER instance prior.
 
 # BUILD INSTRUCTIONS
 
