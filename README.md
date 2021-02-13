@@ -38,27 +38,25 @@ The EWAI project integrates a number of newly developed (and still developing) d
 7. Energy Web EW-Messaging: https://github.com/energywebfoundation/messaging
 8. Decentralized Identifiers (DIDs): https://github.com/energywebfoundation/passport-did-auth, https://github.com/energywebfoundation/iam-client-lib, https://en.wikipedia.org/wiki/Decentralized_Identifiers
 
-Further, knowledge of Ocean Protocol is required:
-
-9. Ocean Protocol: https://oceanprotocol.com/
-10. Ocean Protocol V3 Marketplace: https://github.com/oceanprotocol/market
-
 All of the following platforms/technologies are used in building the EWAI prototype:
 
-11. Node.js (>= v14): https://nodejs.org/en/
-12. Nest JS: https://nestjs.com/
-13. PostgreSQL: https://www.postgresql.org/
-14. TimescaleDB (optional): https://www.timescale.com/
-15. JavaScript: https://en.wikipedia.org/wiki/JavaScript
-16. TypeScript: https://www.typescriptlang.org/
-17. React: https://reactjs.org/
-18. Gatsby: https://www.gatsbyjs.com/
-19. Prisma ORM: https://prisma.io
-20. Web 3 dApps: https://web3js.readthedocs.io/en/v1.3.0/#
-21. Graph QL: https://graphql.org/
-22. Passport JS: http://www.passportjs.org/
+9. Node.js (>= v14): https://nodejs.org/en/
+10. Nest JS: https://nestjs.com/
+11. PostgreSQL: https://www.postgresql.org/
+12. TimescaleDB (optional): https://www.timescale.com/
+13. JavaScript: https://en.wikipedia.org/wiki/JavaScript
+14. TypeScript: https://www.typescriptlang.org/
+15. React: https://reactjs.org/
+16. Gatsby: https://www.gatsbyjs.com/
+17. Prisma ORM: https://prisma.io
+18. Web 3 dApps: https://web3js.readthedocs.io/en/v1.3.0/#
+19. Graph QL: https://graphql.org/
+20. Passport JS: http://www.passportjs.org/
 
-To use the EWAI-MARKET repo, you must also have successfully built and deployed an EWAI-SERVER instance prior.
+To build and use this EWAI-MARKET repo, you must also have successfully prior built and deployed an EWAI-SERVER instance, and knowledge of Ocean Protocol is required:
+
+21. Ocean Protocol: https://oceanprotocol.com/
+22. Ocean Protocol V3 Marketplace: https://github.com/oceanprotocol/market
 
 # BUILD INSTRUCTIONS
 
