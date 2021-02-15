@@ -29,34 +29,34 @@ Additionally, many of the configuration settings for this marketplace are coming
 
 The EWAI project integrates a number of newly developed (and still developing) decentralized technologies and platforms integrated together into a functioning energy marketplace prototype. Also, there is a considerable amount of setup involved in getting EWAI running beyond just building this repo. Familiarity with all of the following is required:
 
-1. Energy Web: https://energyweb.org
-2. Energy Web Chain (EWC): https://www.energyweb.org/technology/energy-web-chain/
-3. Energy Web Token (EWT): https://www.energyweb.org/technology/token/
-4. Energy Web EW-DOS: https://www.energyweb.org/technology/ew-dos/
-5. Energy Web Name Service (EWNS): https://ens.energyweb.org
-6. Energy Web EW-Switchboard: https://switchboard.energyweb.org/
-7. Energy Web EW-Messaging: https://github.com/energywebfoundation/messaging
-8. Decentralized Identifiers (DIDs): https://github.com/energywebfoundation/passport-did-auth, https://github.com/energywebfoundation/iam-client-lib, https://en.wikipedia.org/wiki/Decentralized_Identifiers
+1. Energy Web: <a href="https://energyweb.org" target="_blank">https://energyweb.org</a>
+2. Energy Web Chain (EWC): <a href="https://www.energyweb.org/technology/energy-web-chain/" target="_blank">https://www.energyweb.org/technology/energy-web-chain/</a>
+3. Energy Web Token (EWT): <a href="https://www.energyweb.org/technology/token/" target="_blank">https://www.energyweb.org/technology/token/</a>
+4. Energy Web EW-DOS: <a href="https://www.energyweb.org/technology/ew-dos/" target="_blank">https://www.energyweb.org/technology/ew-dos/</a>
+5. Energy Web Name Service (EWNS): <a href="https://ens.energyweb.org" target="_blank">https://ens.energyweb.org</a>
+6. Energy Web EW-Switchboard: <a href="https://switchboard.energyweb.org/" target="_blank">https://switchboard.energyweb.org/</a>
+7. Energy Web EW-Messaging: <a href="https://github.com/energywebfoundation/messaging" target="_blank">https://github.com/energywebfoundation/messaging</a>
+8. Decentralized Identifiers (DIDs): <a href="https://github.com/energywebfoundation/passport-did-auth" target="_blank">https://github.com/energywebfoundation/passport-did-auth</a>, <a href="https://github.com/energywebfoundation/iam-client-lib" target="_blank">https://github.com/energywebfoundation/iam-client-lib</a>, <a href="https://en.wikipedia.org/wiki/Decentralized_Identifiers" target="_blank">https://en.wikipedia.org/wiki/Decentralized_Identifiers</a>
 
 All of the following platforms/technologies are used in building the EWAI prototype:
 
-9. Node.js (>= v14): https://nodejs.org/en/
-10. Nest JS: https://nestjs.com/
-11. PostgreSQL: https://www.postgresql.org/
-12. TimescaleDB (optional): https://www.timescale.com/
-13. JavaScript: https://en.wikipedia.org/wiki/JavaScript
-14. TypeScript: https://www.typescriptlang.org/
-15. React: https://reactjs.org/
-16. Gatsby: https://www.gatsbyjs.com/
-17. Prisma ORM: https://prisma.io
-18. Web 3 dApps: https://web3js.readthedocs.io/en/v1.3.0/#
-19. Graph QL: https://graphql.org/
-20. Passport JS: http://www.passportjs.org/
+9. Node.js (>= v14): <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a>
+10. Nest JS: <a href="https://nestjs.com/" target="_blank">https://nestjs.com/</a>
+11. PostgreSQL: <a href="https://www.postgresql.org/" target="_blank">https://www.postgresql.org/</a>
+12. TimescaleDB (optional): <a href="https://www.timescale.com/" target="_blank">https://www.timescale.com/</a>
+13. JavaScript: <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">https://en.wikipedia.org/wiki/JavaScript</a>
+14. TypeScript: <a href="https://www.typescriptlang.org/" target="_blank">https://www.typescriptlang.org/</a>
+15. React: <a href="https://reactjs.org/" target="_blank">https://reactjs.org/</a>
+16. Gatsby: <a href="https://www.gatsbyjs.com/" target="_blank">https://www.gatsbyjs.com/</a>
+17. PrismaJS ORM: <a href="https://prisma.io" target="_blank">https://prisma.io</a>
+18. Web3 dApps: <a href="https://web3js.readthedocs.io/en/v1.3.0/#" target="_blank">https://web3js.readthedocs.io/en/v1.3.0/#</a>
+19. GraphQL: <a href="https://graphql.org/" target="_blank">https://graphql.org/</a>
+20. Passport JS: <a href="http://www.passportjs.org/" target="_blank">http://www.passportjs.org/</a>
 
-To build and use this EWAI-MARKET repo, you must also have successfully prior built and deployed an EWAI-SERVER instance, and knowledge of Ocean Protocol is required:
+To build and use the EWAI-MARKET repo, you must also have successfully prior built and deployed an EWAI-SERVER instance, and knowledge of Ocean Protocol is required:
 
-21. Ocean Protocol: https://oceanprotocol.com/
-22. Ocean Protocol V3 Marketplace: https://github.com/oceanprotocol/market
+21. Ocean Protocol: <a href="https://oceanprotocol.com/" target="_blank">https://oceanprotocol.com/</a>
+22. Ocean Protocol V3 Marketplace: <a href="https://github.com/oceanprotocol/market" target="_blank">https://github.com/oceanprotocol/market</a>
 
 # BUILD INSTRUCTIONS
 
