@@ -40,8 +40,8 @@ The EWAI project integrates a number of newly developed (and still developing) d
 
 All of the following platforms/technologies are used in building the EWAI prototype:
 
-9. Node.js (>= v14): <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a>
-10. Nest JS: <a href="https://nestjs.com/" target="_blank">https://nestjs.com/</a>
+9. NodeJS (>= v14): <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a>
+10. NestJS: <a href="https://nestjs.com/" target="_blank">https://nestjs.com/</a>
 11. PostgreSQL: <a href="https://www.postgresql.org/" target="_blank">https://www.postgresql.org/</a>
 12. TimescaleDB (optional): <a href="https://www.timescale.com/" target="_blank">https://www.timescale.com/</a>
 13. JavaScript: <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">https://en.wikipedia.org/wiki/JavaScript</a>
@@ -51,7 +51,7 @@ All of the following platforms/technologies are used in building the EWAI protot
 17. PrismaJS ORM: <a href="https://prisma.io" target="_blank">https://prisma.io</a>
 18. Web3 dApps: <a href="https://web3js.readthedocs.io/en/v1.3.0/#" target="_blank">https://web3js.readthedocs.io/en/v1.3.0/#</a>
 19. GraphQL: <a href="https://graphql.org/" target="_blank">https://graphql.org/</a>
-20. Passport JS: <a href="http://www.passportjs.org/" target="_blank">http://www.passportjs.org/</a>
+20. PassportJS: <a href="http://www.passportjs.org/" target="_blank">http://www.passportjs.org/</a>
 
 To build and use the EWAI-MARKET repo, you must also have successfully prior built and deployed an EWAI-SERVER instance, and knowledge of Ocean Protocol is required:
 
