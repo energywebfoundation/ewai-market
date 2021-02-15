@@ -16,12 +16,12 @@ It would even be possible to cross-analyze datasets from different energy sector
 
 # START HERE
 
-A considerable amount of setup is required before this repo can be used. Please therefore start by [Reading the EWAI Docs](https://energy-web-foundation-energyweb-ewai.readthedocs-hosted.com/).
+A considerable amount of setup is required before this repo can be used. Please therefore start by <a href="https://energy-web-foundation-energyweb-ewai.readthedocs-hosted.com/" target="_blank">Reading the EWAI Docs</a>.
 
 An EWAI deployment consists of an [EWAI-SERVER](https://github.com/energywebfoundation/ewai) instance paired with an [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market) instance (along with supporting EnergyWeb components):
 
 1. [EWAI-SERVER](https://github.com/energywebfoundation/ewai): This is the server component which offers a data storage cache for assembling streaming DER PTD message data packets into time-series datasets, and
-2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the [Ocean Protocol V3 Marketplace](https://github.com/oceanprotocol/market), whereby those EWAI energy datasets can be published in a marketplace format utilizing the power of Ocean Protocol data tokens. An understanding of how Ocean Protocol works will therefore also be necessary.
+2. [EWAI-MARKET](https://github.com/energywebfoundation/ewai-market): This repository, which is a fork of the <a href="https://github.com/oceanprotocol/market" target="_blank">Ocean Protocol V3 Marketplace</a>, whereby those EWAI energy datasets can be published in a marketplace format utilizing the power of Ocean Protocol data tokens. An understanding of how Ocean Protocol works will therefore also be necessary.
 
 Additionally, many of the configuration settings for this marketplace are coming from the EWAI-SERVER instance that is paired with via ewaiInstance GraphQL calls. That is why there are only a few Ocean Protocol related config settings in the .env. files for this repo.
 
@@ -66,7 +66,7 @@ To build and use the EWAI-MARKET repo, you must also have successfully prior bui
 
 ---
 
-The instructions below are about how to setup this marketplace component. The app is a React app built with [Gatsby.js](https://www.gatsbyjs.org) + TypeScript + CSS modules and will connect to Ocean components in Rinkeby by default.
+The instructions below are about how to setup this marketplace component. The app is a React app built with <a href="https://www.gatsbyjs.org" target="_blank">Gatsby.js</a> + TypeScript + CSS modules and will connect to Ocean components in Rinkeby by default.
 
 To start local development:
 
